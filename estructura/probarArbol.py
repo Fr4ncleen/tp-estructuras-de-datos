@@ -36,3 +36,22 @@ arbol.preorden()
 
 print("\n===== POSTORDER =====")
 arbol.postorden()
+juegos_a_eliminar = "League of legends"
+print(f""\n===== ELIMINANDO '{juego_a_eliminar}' =====")
+elliminado= arbol.eliminar(juego_a_eliminar)
+
+if eliminado:
+    print(f"¡'{juego_a_eliminar}' fue eliminado correctamente del árbol!")
+else:
+    print(f"No se pudo eliminar '{juego_a_eliminar}' (no existía en el árbol).")
+
+print("\n===== RECORRIDO INORDER ACTUALIZADO =====")
+arbol.inorder()
+
+print(f"\nBúsqueda tras eliminación de '{juego_a_eliminar}':")
+res_busqueda = arbol.buscar(juego_a_eliminar)
+if res_busqueda:
+    print(f"Encontrado: {res_busqueda}")
+else:
+    print(f"Confirmado: '{juego_a_eliminar}' ya no está en el árbol.")
+
