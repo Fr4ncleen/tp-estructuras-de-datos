@@ -89,5 +89,27 @@ class ArbolBinarioBusqueda:
 
          self._postorden_recursivo(nodo_actual.derecho)
 
-         print(nodo_actual.videojuego)
+        print(nodo_actual.videojuego)  
+class GrafoVideojuegos:
+    def __init__(self):
     
+        self.adyacencias = {}
+
+    def agregar_vertice(self, videojuego):
+        """Agrega un videojuego como nodo (vértice) al grafo si no existe."""
+        if videojuego not in self.adyacencias:
+            self.adyacencias[videojuego] = []
+
+    def agregar_arista(self, juego1, juego2):
+        """Conecta dos videojuegos (grafo no dirigido / bidireccional)."""
+        self.agregar_vertice(juego1)
+        self.agregar_vertice(juego2)
+        
+        if juego2 not in self.adyacencias[juego1]:
+            self.adyacencias[juego1].append(juego2)
+        if juego1 not in self.adyacencias[juego2]:
+            self.adyacencias[juego2].append(juego1)
+
+    def obtener_recomendaciones(self, videojuego):
+        """Retorna los videojuegos conectados/relacionados a uno dado."""
+        return self.adyacencias.get(videojuego, [])
