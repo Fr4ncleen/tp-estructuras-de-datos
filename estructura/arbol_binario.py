@@ -96,12 +96,12 @@ class GrafoVideojuegos:
         self.adyacencias = {}
 
     def agregar_vertice(self, videojuego):
-        """Agrega un videojuego como nodo (vértice) al grafo si no existe."""
+        
         if videojuego not in self.adyacencias:
             self.adyacencias[videojuego] = []
 
     def agregar_arista(self, juego1, juego2):
-        """Conecta dos videojuegos (grafo no dirigido / bidireccional)."""
+    
         self.agregar_vertice(juego1)
         self.agregar_vertice(juego2)
         
@@ -111,5 +111,4 @@ class GrafoVideojuegos:
             self.adyacencias[juego2].append(juego1)
 
     def obtener_recomendaciones(self, videojuego):
-        """Retorna los videojuegos conectados/relacionados a uno dado."""
         return self.adyacencias.get(videojuego, [])
