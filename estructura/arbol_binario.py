@@ -112,3 +112,43 @@ class GrafoVideojuegos:
 
     def obtener_recomendaciones(self, videojuego):
         return self.adyacencias.get(videojuego, [])
+
+class Videojuego:
+    def __init__(self, nombre, genero):
+        self.nombre = nombre
+        self.genero = genero
+
+    def __str__(self):
+        return f"{self.nombre} ({self.genero})"
+
+
+class Nodo:
+    def __init__(self, videojuego):
+        self.videojuego = videojuego
+        self.izquierdo = None
+        self.derecho = None
+
+
+class ArbolBinarioBusqueda:
+    def __init__(self):
+        self.raiz = None
+
+    def insertar(self, videojuego):
+        if self.raiz is None:
+            self.raiz = Nodo(videojuego)
+        else:
+            self._insertar_recursivo(self.raiz, videojuego)
+
+    def _insertar_recursivo(self, nodo_actual, videojuego):
+        if videojuego.nombre < nodo_actual.videojuego.nombre:
+            if nodo_actual.izquierdo is None:
+                nodo_actual.izquierdo = Nodo(videojuego)
+            else:
+                self._insertar_recursivo(nodo_actual.izquierdo, videojuego)
+        elif videojuego.nombre > nodo_actual.videojuego.nombre:
+            if nodo_actual.derecho is None:
+                nodo_actual.derecho = Nodo(videojuego)
+            else:
+                self._insertar_recursivo(nodo_actual.derecho, videojuego)
+    
+    def buscar(self, nombre):
