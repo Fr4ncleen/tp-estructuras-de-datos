@@ -24,3 +24,37 @@ class Grafo:
         
         for vecino in self.adyacencia[videojuego]:
             print(f"- {vecino.nombre}")
+
+def bfs(self, inicio):
+        if inicio not in self.adyacencia:
+            return []
+
+        visitados = {inicio}
+        cola = [inicio]
+        orden = []
+
+        while cola:
+            actual = cola.pop(0)
+            orden.append(actual)
+            for vecino in self.adyacencia[actual]:
+                if vecino not in visitados:
+                    visitados.add(vecino)
+                    cola.append(vecino)
+
+        return orden
+
+    def dfs(self, inicio, visitados=None):
+        if inicio not in self.adyacencia:
+            return []
+
+        if visitados is None:
+            visitados = set()
+
+        visitados.add(inicio)
+        orden = [inicio]
+
+        for vecino in self.adyacencia[inicio]:
+            if vecino not in visitados:
+                orden.extend(self.dfs(vecino, visitados))
+
+        return orden
